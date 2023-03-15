@@ -10,16 +10,16 @@ public class Exercicios04 {
 		
 		float n1, n2, n3, n4;
 		
-		System.out.println("Número 1: ");
+		System.out.println("Digite Número 1: ");
 		n1 = leia.nextFloat();
 		
-		System.out.println("Número 2: ");
+		System.out.println("Digite Número 2: ");
 		n2 = leia.nextFloat();
 		
-		System.out.println("Número 3: ");
+		System.out.println("Digite Número 3: ");
 		n3 = leia.nextFloat();
 		
-		System.out.println("Número 4: ");
+		System.out.println("Digite Número 4: ");
 		n4 = leia.nextFloat();
 		
 		System.out.println("Diferença: " + ((n1 * n2)-(n3 * n4)));

@@ -12,19 +12,19 @@ public class Exercicios03 {
 		
 		float sb, an, he, de;
 		
-		System.out.println("Salário Bruto: ");
+		System.out.println("Digite Salário Bruto: ");
 		sb = leia.nextFloat();
 		
-		System.out.println("Adicional Noturno: ");
+		System.out.println("Digite Adicional Noturno: ");
 		an = leia.nextFloat();
 
-		System.out.println("Horas Extras: ");
+		System.out.println("Digite Horas Extras: ");
 		he = leia.nextFloat();
 		
-		System.out.println("Descontos: ");
+		System.out.println("DigiteDescontos: ");
 		de = leia.nextFloat();
 		
-		System.out.println("Salário Líquido: " +df.format((sb + an + he - de)));
+		System.out.println("Salário Líquido: " +df.format((sb + an + (he * 5) - de)));
 	}
 
 }

@@ -10,16 +10,16 @@ public class Exercicios02 {
 		
 		float n1, n2, n3, n4;
 		
-		System.out.println("Nota 1: ");
+		System.out.println("Digite Nota 1: ");
 		n1 = leia.nextFloat();
 		
-		System.out.println("Nota 2: ");
+		System.out.println("Digite Nota 2: ");
 		n2 = leia.nextFloat();
 		
-		System.out.println("Nota 3: ");
+		System.out.println("Digite Nota 3: ");
 		n3 = leia.nextFloat();
 		
-		System.out.println("Nota 4: ");
+		System.out.println("Digite Nota 4: ");
 		n4 = leia.nextFloat();
 		
 		System.out.println("Média Final: " + (n1 + n2 + n3 + n4)/4);
