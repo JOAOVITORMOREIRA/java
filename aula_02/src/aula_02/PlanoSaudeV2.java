@@ -41,8 +41,7 @@ public class PlanoSaudeV2 {
         	System.out.println("O valor do plano é de R$ 1000,00");
         	break;
         default:
-        	System.out.println("Idade inválida");
-        	
+        	System.out.println("Plano Invalido");
         }
 
 	}
