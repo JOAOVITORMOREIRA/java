@@ -23,8 +23,6 @@ public class ExercicioLacoCondicional04 {
         System.out.println("Digite o codigo do produto: ");
         produto = leia.nextInt();
         
-        System.out.println();
-        
         System.out.println("Digite a quantidade: ");
         quantidade = leia.nextInt();
         
@@ -45,14 +43,11 @@ public class ExercicioLacoCondicional04 {
         	System.out.println("O valor do produto é: " + (preco = 8 * quantidade));
         	break;
         case 6:
-        	System.out.println("O valor do produto é: " + (preco = 13 * quantidade));
+        	System.out.println("O valor do produto é: \n produto" + (preco = 13 * quantidade));
         	break;
         default:
-        	if (produto >= 7)
         		System.out.println("Produto Invalido");
-        		
         	
-        	System.out.println("Valor Total: ");
         	
         }
         
