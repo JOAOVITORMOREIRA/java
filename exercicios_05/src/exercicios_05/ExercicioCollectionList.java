@@ -31,7 +31,9 @@ public class ExercicioCollectionList {
 	            System.out.println("O número " + numero + " está na posição " + posicao + " da lista.");
 	        } else {
 	            System.out.println("O número " + numero + " não foi encontrado!");
+	            
 	        }
+	        
 	    }
 
 	}
