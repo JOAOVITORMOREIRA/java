@@ -9,9 +9,10 @@ public class TestaCalculadora {
 	public static void main(String[] args) {
 		
 		Scanner leia = new Scanner(System.in);
+		//classe instanciada para ler o que for escrito
 		
 		Calculos calc = new Calculos();
-		//classe instaciada
+		//classe instaciada para calcular
 	
 		
 		int opcao;
@@ -30,7 +31,9 @@ public class TestaCalculadora {
 			if (opcao == 0) {
 				sobre();
 				leia.close();
+				//fecha a leitura do sistema
 				System.exit(0);
+				//encerra o programa
 			}
 			
 			System.out.println("Digite o 1º número: ");
