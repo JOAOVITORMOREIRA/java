@@ -15,6 +15,8 @@ public class Conta {
 		this.tilular = tilular;
 		this.saldo = saldo;
 	}
+	
+	public Conta () {}
 
 	public int getNumero() {
 		return numero;

@@ -3,6 +3,8 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -19,17 +21,22 @@ public class Menu {
 		
 		c1.visualizar();
 		
-		System.out.println("Saldo da conta: " + c1.getSaldo());
+		ContaCorrente cc1 = new ContaCorrente(2, 123, 1, "Sabrins", 100000.00f,1000.00f);
+		cc1.visualizar();
 		
-		c1.setTilular("João Vitor Moreira");
+		ContaPoupanca cp1 = new ContaPoupanca(3, 234, 1, "Valeria", 100000.00f, 15);
+		cp1.visualizar();
 		
-		c1.visualizar();
+		cp1.sacar(1000.00f);
+		cp1.visualizar();
 		
-		c1.sacar(200000.0f);
-		c1.visualizar();
+		cp1.depositar(5000.00f);
+		cp1.visualizar();
 		
-		c1.depositar(2000.0f);
-		c1.visualizar();
+		
+		Conta c2 = new Conta();
+		c2.visualizar();
+		
 
 		while (true) {
 
