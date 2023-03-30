@@ -18,25 +18,31 @@ public class Menu {
 		int opcao, numero, agencia, tipo, aniversario, numeroDestino;
 		String titular;
 		float saldo, limite, valor;
-		
+
 		ContaController contas = new ContaController();
-		
-		
-		ContaCorrente cc1 = new ContaCorrente(2, 123, 1, "Sabrina", 100000.00f,1000.00f);
-		cc1.visualizar();
-		
-		ContaPoupanca cp1 = new ContaPoupanca(3, 234, 2, "Valeria", 100000.00f, 15);
-		cp1.visualizar();
-		
+
+		ContaCorrente cc1 = new ContaCorrente(contas.gerarNumero(), 123, 1, "João da Silva", 1000f, 100.0f);
+		contas.cadastrar(cc1);
+
+		ContaCorrente cc2 = new ContaCorrente(contas.gerarNumero(), 124, 1, "Maria da Silva", 2000f, 100.0f);
+		contas.cadastrar(cc2);
+
+		ContaPoupanca cp1 = new ContaPoupanca(contas.gerarNumero(), 125, 2, "Mariana dos Santos", 4000f, 12);
+		contas.cadastrar(cp1);
+
+		ContaPoupanca cp2 = new ContaPoupanca(contas.gerarNumero(), 125, 2, "Juliana Ramos", 8000f, 15);
+		contas.cadastrar(cp2);
+
 		cp1.sacar(1000.00f);
 		cp1.visualizar();
-		
+
 		cp1.depositar(5000.00f);
 		cp1.visualizar();
 
 		while (true) {
 
-			System.out.println(Cores.TEXT_CYAN_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "*************************************************");
+			System.out.println(Cores.TEXT_CYAN_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
+					+ "*************************************************");
 			System.out.println("                                                 ");
 			System.out.println("               BANCO DO JOAO                     ");
 			System.out.println("                                                 ");
@@ -58,8 +64,8 @@ public class Menu {
 			System.out.println("                                                 " + Cores.TEXT_RESET);
 
 			try {
-			opcao = leia.nextInt();
-			}catch(InputMismatchException e) {
+				opcao = leia.nextInt();
+			} catch (InputMismatchException e) {
 				System.out.println("Digite valores inteiros!");
 				leia.nextLine();
 				opcao = 0;
@@ -102,7 +108,8 @@ public class Menu {
 					System.out.println("Digite o dia do Aniversario da Conta: ");
 					aniversario = leia.nextInt();
 
-					contas.cadastrar(new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
+					contas.cadastrar(
+							new ContaPoupanca(contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
 				}
 				}
 				keyPress();
@@ -114,95 +121,107 @@ public class Menu {
 			}
 			case 3 -> {
 				System.out.println("Buscar Conta por Numero \n\n");
-				
+
 				System.out.println("Digite o número da conta: ");
 				numero = leia.nextInt();
-				
+
 				contas.procurarPorNumero(numero);
 				keyPress();
 			}
 			case 4 -> {
 				System.out.println("Atualizar Dados da Conta\n\n");
-				
+
 				System.out.println("Digite o número da conta: ");
-                numero = leia.nextInt();
+				numero = leia.nextInt();
 
-                tipo = 1;
-                // condicional buscar na collection
+				if (contas.buscarNaCollection(numero) != null) {
+					tipo = contas.retornaTipo(numero);
+					// condicional buscar na collection
 
-                System.out.println("Digite o Numero da Agência: ");
-                agencia = leia.nextInt();
-                
-                System.out.println("Digite o Nome do Titular: ");
-                leia.skip("\\R?");
-                titular = leia.nextLine();
+					System.out.println("Digite o Numero da Agência: ");
+					agencia = leia.nextInt();
 
-                System.out.println("Digite o Saldo da Conta (R$): ");
-                saldo = leia.nextFloat();
+					System.out.println("Digite o Nome do Titular: ");
+					leia.skip("\\R?");
+					titular = leia.nextLine();
 
-                // retornar tipo
+					System.out.println("Digite o Saldo da Conta (R$): ");
+					saldo = leia.nextFloat();
 
-                switch (tipo) {
-                case 1 -> {
-                    System.out.println("Digite o Limite de Crédito (R$): ");
-                    limite = leia.nextFloat();
+					switch (tipo) {
+					case 1 -> {
+						System.out.println("Digite o Limite de Crédito (R$): ");
+						limite = leia.nextFloat();
 
-                    // criar o objeto conta corrente
-                }
-                case 2 -> {
-                    System.out.println("Digite o dia do Aniversario da Conta: ");
-                    aniversario = leia.nextInt();
+						contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+					}
+					case 2 -> {
+						System.out.println("Digite o dia do Aniversario da Conta: ");
+						aniversario = leia.nextInt();
 
-                    // criar o objeto conta poupanca
+						contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
 
-                }
-                default -> {
-                    System.out.println("Tipo de conta inválido!");
-                }
-                }
-
-                // fim do condicional buscar na collection
-                keyPress();
+					}
+					default -> {
+						System.out.println("Tipo de conta inválido!");
+					}
+					}
+				} else {
+					System.out.println("A conta não foi encontrada!");
+				}
+				// fim do condicional buscar na collection
+				keyPress();
 			}
 			case 5 -> {
 				System.out.println("Apagar Conta\n\n");
-				
+
 				System.out.println("Digite o número da conta: ");
 				numero = leia.nextInt();
+
+				contas.detelar(numero);
 				keyPress();
 			}
 			case 6 -> {
 				System.out.println("Sacar\n\n");
-				
+
 				System.out.println("Digite o número da conta: ");
 				numero = leia.nextInt();
-				
+
 				System.out.println("Digite o valor do saque: ");
 				valor = leia.nextFloat();
+				
+				contas.sacar(numero, valor);
 				keyPress();
 			}
 			case 7 -> {
 				System.out.println("Depositar\n\n");
-				
+
 				System.out.println("Digite o número da conta: ");
 				numero = leia.nextInt();
+				
+				System.out.println("Digite o valor do Depósito: ");
+				valor = leia.nextFloat();
+				
+				contas.depositar(numero, valor);
 				keyPress();
 			}
 			case 8 -> {
 				System.out.println("Transferir Valores Entre Contas\n\n");
-				
-				System.out.println("Digite o Numero da Conta de Origem: ");
-                numero = leia.nextInt();
-                
-                System.out.println("Digite o Numero da Conta de Destino: ");
-                numeroDestino = leia.nextInt();
 
-                do {
-                    System.out.println("Digite o Valor da Transferência (R$): ");
-                    valor = leia.nextFloat();
-                    
-                } while (valor <= 0);
-                keyPress();
+				System.out.println("Digite o Numero da Conta de Origem: ");
+				numero = leia.nextInt();
+
+				System.out.println("Digite o Numero da Conta de Destino: ");
+				numeroDestino = leia.nextInt();
+
+				do {
+					System.out.println("Digite o Valor da Transferência (R$): ");
+					valor = leia.nextFloat();
+
+				} while (valor <= 0);
+				
+				contas.transferir(numero, numeroDestino, valor);
+				keyPress();
 			}
 			default -> System.out.println("\nOpção Invalida!\n");
 			}
@@ -210,9 +229,10 @@ public class Menu {
 		}
 
 	}
-	
+
 	public static void sobre() {
-		System.out.println(Cores.TEXT_CYAN_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "*************************************************");
+		System.out.println(Cores.TEXT_CYAN_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
+				+ "*************************************************");
 		System.out.println("                                                 ");
 		System.out.println("   João Vitor Moreira                            ");
 		System.out.println("   E-mail: joaoitagv@gmail.com                   ");
@@ -221,13 +241,13 @@ public class Menu {
 		System.out.println("*************************************************");
 		System.out.println("                                                 " + Cores.TEXT_RESET);
 	}
-	
+
 	public static void keyPress() {
 		try {
 			System.out.println(Cores.TEXT_RESET + "Pressione a tecla enter para continuar...");
-			System.in.read();	
-		}catch (IOException e) {
+			System.in.read();
+		} catch (IOException e) {
 			System.out.println("Erro de digitação");
-	}
+		}
 	}
 }
